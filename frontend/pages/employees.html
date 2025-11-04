@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees - Payroll System</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <script src="../js/auth-check.js"></script>
+    <script src="../js/employees.js"></script>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>💼 Payroll System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">📊 Dashboard</a></li>
+                <li><a href="employees.html" class="active">👥 Employees</a></li>
+                <li><a href="attendance.html">📅 Attendance</a></li>
+                <li><a href="payroll.html">💰 Payroll</a></li>
+                <li><a href="#" onclick="logout()" style="color: #ff6b6b;">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header>
+                <h1>Employee Management</h1>
+                <button class="btn btn-primary" onclick="openAddModal()">+ Add Employee</button>
+            </header>
+
+            <div class="content">
+                <table id="employeesTable">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Position</th>
+                            <th>Salary</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Employee Modal -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Add Employee</h2>
+            <form id="employeeForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Employee ID:</label>
+                        <input type="text" id="employee_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input type="text" id="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" id="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Department:</label>
+                        <select id="department" required>
+                            <option value="">Select Department</option>
+                            <option value="IT">IT</option>
+                            <option value="HR">HR</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Position:</label>
+                        <input type="text" id="position" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Join Date:</label>
+                        <input type="date" id="join_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Salary:</label>
+                        <input type="number" id="salary" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select id="status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
