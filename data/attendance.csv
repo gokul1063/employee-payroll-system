@@ -1,1 +1,2 @@
 id,employee_id,date,check_in,check_out,hours_worked,status,created_at
+1,EMP001,2025-11-04,09:00,17:00,8,present,2025-11-04T20:29:36.268Z

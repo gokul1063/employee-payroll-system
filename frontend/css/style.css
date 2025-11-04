@@ -410,3 +410,37 @@ table tbody tr:hover {
         grid-template-columns: 1fr;
     }
 }
+
+.filter-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.filter-section select {
+    padding: 10px 15px;
+    border: 2px solid #667eea;
+    border-radius: 5px;
+    min-width: 150px;
+    cursor: pointer;
+}
+
+.filter-section select:hover {
+    border-color: #764ba2;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.summary-item {
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+    border-left: 4px solid #667eea;
+}
+
+.summary-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
