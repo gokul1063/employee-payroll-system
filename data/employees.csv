@@ -1,4 +1,5 @@
 employee_id,first_name,last_name,email,phone,department,position,join_date,salary,status,created_at
 EMP001,John,Doe,john@example.com,1234567890,IT,Developer,2024-01-01,50000,active,2024-01-01T00:00:00Z
 EMP002,Jane,Smith,jane@example.com,0987654321,HR,Manager,2024-01-01,60000,active,2024-01-01T00:00:00Z
-TEST1762283931258,Test,Employee,test1762283931258@example.com,1111111111,IT,Tester,2024-01-01,40000,active,2025-11-04T19:18:51.265Z
+TEST1762283931258,Test-1,Employee,test1762283931258@example.com,1111111111,IT,Tester,2024-01-01,40000,active,2025-11-04T19:18:51.265Z
+0928098,Sam,Andress,samandress@gmial.com,9090121202,HR,Developer,2024-10-04,80000,active,2025-11-04T19:35:19.448Z

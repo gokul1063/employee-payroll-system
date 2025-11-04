@@ -10,25 +10,26 @@
     <div class="container">
         <nav class="sidebar">
             <div class="logo">
-                <h2>💼 Payroll System</h2>
+                <h2>💼 Payroll</h2>
             </div>
             <ul class="nav-links">
                 <li><a href="../index.html">📊 Dashboard</a></li>
                 <li><a href="employees.html">👥 Employees</a></li>
                 <li><a href="attendance.html">📅 Attendance</a></li>
                 <li><a href="payroll.html" class="active">💰 Payroll</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
             </ul>
         </nav>
 
         <main class="main-content">
             <header>
                 <h1>Payroll Management</h1>
-                <button class="btn btn-primary" onclick="openGenerateModal()">Generate Payroll</button>
+                <button class="btn btn-primary" id="generatePayrollBtn">Generate Payroll</button>
             </header>
 
             <div class="content">
                 <div class="payroll-summary" id="payrollSummary">
-                    <!-- Summary will be loaded here -->
+                    <h3>Loading...</h3>
                 </div>
 
                 <table id="payrollTable">
@@ -47,17 +48,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data will be loaded here -->
+                        <tr><td colspan="10" style="text-align:center;padding:20px;">Loading...</td></tr>
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
 
-    <!-- Generate Payroll Modal -->
     <div id="generateModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeGenerateModal()">&times;</span>
+            <span class="close" id="closeGenerateModalBtn">&times;</span>
             <h2>Generate Payroll</h2>
             <form id="generateForm">
                 <div class="form-group">
@@ -79,16 +79,18 @@
                 </div>
                 <div class="form-group">
                     <label>Year:</label>
-                    <input type="number" id="gen_year" value="2024" required>
+                    <input type="number" id="gen_year" min="2020" max="2030" required>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Generate</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeGenerateModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" id="cancelGenerateBtn">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <script src="../js/config.js"></script>
+    <script src="../js/auth-check.js"></script>
     <script src="../js/payroll.js"></script>
 </body>
 </html>
