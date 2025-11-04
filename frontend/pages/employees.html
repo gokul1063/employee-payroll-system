@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <script src="../js/auth-check.js"></script>
-    <script src="../js/employees.js"></script>
     <div class="container">
         <nav class="sidebar">
             <div class="logo">
-                <h2>💼 Payroll System</h2>
+                <h2>💼 Payroll</h2>
             </div>
             <ul class="nav-links">
                 <li><a href="../index.html">📊 Dashboard</a></li>
@@ -26,7 +24,7 @@
         <main class="main-content">
             <header>
                 <h1>Employee Management</h1>
-                <button class="btn btn-primary" onclick="openAddModal()">+ Add Employee</button>
+                <button class="btn btn-primary" id="addEmployeeBtn">+ Add Employee</button>
             </header>
 
             <div class="content">
@@ -44,17 +42,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data will be loaded here -->
+                        <tr><td colspan="8" style="text-align:center;padding:20px;">Loading...</td></tr>
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
 
-    <!-- Add/Edit Employee Modal -->
     <div id="employeeModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" id="closeModalBtn">&times;</span>
             <h2 id="modalTitle">Add Employee</h2>
             <form id="employeeForm">
                 <div class="form-grid">
@@ -111,11 +108,13 @@
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <script src="../js/auth-check.js"></script>
+    <script src="../js/employees.js"></script>
 </body>
 </html>
