@@ -1,0 +1,3 @@
+id,username,password,full_name,role,created_at
+1,admin,admin123,Administrator,admin,2024-01-01
+2,user,user123,Test User,user,2024-01-01
