@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>API Test Page</h1>
+    
+    <h2>1. Test Login</h2>
+    <button onclick="testLogin()">Test Login</button>
+    <pre id="loginResult"></pre>
+    
+    <h2>2. Test Get Employees</h2>
+    <button onclick="testGetEmployees()">Get Employees</button>
+    <pre id="employeesResult"></pre>
+    
+    <h2>3. Test Add Employee</h2>
+    <button onclick="testAddEmployee()">Add Test Employee</button>
+    <pre id="addResult"></pre>
+    
+    <h2>4. Test Modal</h2>
+    <button onclick="testModal()">Open Modal</button>
+    
+    <div id="testModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);">
+        <div style="background:white; margin:100px auto; padding:20px; width:400px; border-radius:10px;">
+            <h3>Test Modal</h3>
+            <p>If you can see this, modal CSS works!</p>
+            <button onclick="closeTestModal()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        
+        async function testLogin() {
+            const result = document.getElementById('loginResult');
+            result.textContent = 'Testing...';
+            try {
+                const response = await fetch(API_URL + '/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: 'admin', password: 'admin123'})
+                });
+                const data = await response.json();
+                result.className = response.ok ? 'success' : 'error';
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        async function testGetEmployees() {
+            const result = document.getElementById('employeesResult');
+            result.textContent = 'Testing...';
+            try {
+                const response = await fetch(API_URL + '/employees');
+                const data = await response.json();
+                result.className = response.ok ? 'success' : 'error';
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        async function testAddEmployee() {
+            const result = document.getElementById('addResult');
+            result.textContent = 'Testing...';
+            try {
+                const testEmployee = {
+                    employee_id: 'TEST' + Date.now(),
+                    first_name: 'Test',
+                    last_name: 'Employee',
+                    email: 'test' + Date.now() + '@example.com',
+                    phone: '1111111111',
+                    department: 'IT',
+                    position: 'Tester',
+                    join_date: '2024-01-01',
+                    salary: 40000,
+                    status: 'active'
+                };
+                const response = await fetch(API_URL + '/employees', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(testEmployee)
+                });
+                const data = await response.json();
+                result.className = response.ok ? 'success' : 'error';
+                result.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        function testModal() {
+            document.getElementById('testModal').style.display = 'block';
+        }
+        
+        function closeTestModal() {
+            document.getElementById('testModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

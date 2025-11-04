@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px; margin: 5px; }
+        pre { background: #f0f0f0; padding: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Direct API Test</h1>
+    
+    <h2>Test 1: Check API_URL</h2>
+    <button onclick="test1()">Check Config</button>
+    <pre id="result1"></pre>
+    
+    <h2>Test 2: Test Login API</h2>
+    <button onclick="test2()">Test Login</button>
+    <pre id="result2"></pre>
+    
+    <h2>Test 3: Manual Login</h2>
+    <input type="text" id="user" placeholder="username" value="admin">
+    <input type="password" id="pass" placeholder="password" value="admin123">
+    <button onclick="test3()">Login</button>
+    <pre id="result3"></pre>
+    
+    <script>
+        function test1() {
+            const result = document.getElementById('result1');
+            result.textContent = 'API_URL = ' + (typeof API_URL !== 'undefined' ? API_URL : 'UNDEFINED!');
+            result.className = typeof API_URL !== 'undefined' ? 'success' : 'error';
+        }
+        
+        async function test2() {
+            const result = document.getElementById('result2');
+            result.textContent = 'Testing...';
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: 'admin', password: 'admin123'})
+                });
+                const data = await response.json();
+                result.className = response.ok ? 'success' : 'error';
+                result.textContent = 'Status: ' + response.status + '\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = 'ERROR: ' + error.message;
+            }
+        }
+        
+        async function test3() {
+            const result = document.getElementById('result3');
+            const username = document.getElementById('user').value;
+            const password = document.getElementById('pass').value;
+            result.textContent = 'Logging in as: ' + username;
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username, password})
+                });
+                const data = await response.json();
+                result.className = response.ok ? 'success' : 'error';
+                result.textContent = 'Status: ' + response.status + '\n' + JSON.stringify(data, null, 2);
+                if (response.ok) {
+                    result.textContent += '\n\nSUCCESS! Token: ' + data.token;
+                }
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = 'ERROR: ' + error.message;
+            }
+        }
+    </script>
+    <script src="js/config.js"></script>
+</body>
+</html>

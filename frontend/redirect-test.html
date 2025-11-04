@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect Test</title>
+</head>
+<body>
+    <h1>Redirect Test Page</h1>
+    <p>This page will redirect in 3 seconds...</p>
+    <div id="status"></div>
+    
+    <script>
+        console.log('Test page loaded');
+        document.getElementById('status').textContent = 'Page loaded. Redirecting in 3 seconds...';
+        
+        setTimeout(() => {
+            console.log('Attempting redirect...');
+            document.getElementById('status').textContent = 'Redirecting now...';
+            window.location.href = '/index.html';
+        }, 3000);
+    </script>
+</body>
+</html>
